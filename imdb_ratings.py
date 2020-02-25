@@ -19,6 +19,8 @@ train_data, validation_data, test_data = tfds.load(
 	split=('train[:60%]', 'train[60%:]', 'test'),
 	as_supervised=True)
 
+train_examples_batch, train_labels_batch = next(iter(train_data.batch(10)))
+
 # Use pre-trained text embedding from tensorflow hub
 embedding = "https://tfhub.dev/google/tf2-preview/gnews-swivel-20dim/1"
 hub_layer = hub.KerasLayer(embedding, input_shape=[], dtype=tf.string, trainable=True)
