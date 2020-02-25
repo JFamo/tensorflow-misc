@@ -40,13 +40,11 @@ test_images = test_images / 255.0
 
 model = keras.Sequential([
 	keras.layers.Flatten(input_shape=(28, 28)),
-	keras.layers.Dense(128, activation='relu'),
-	keras.layers.Dense(10)
+	keras.layers.Dense(196, activation='relu'),
+	keras.layers.Dense(49), keras.layers.Dense(10)
 ])
 
-model.compile(optimizer='adam',
-			  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-			  metrics=['accuracy'])
+model.compile(optimizer='adam',loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
 
 model.fit(train_images, train_labels, epochs=10)
 
@@ -87,7 +85,7 @@ def plot_value_array(i, predictions_array, true_label):
 
 # View prediction model
 num_rows = 5
-num_cols = 3
+num_cols = 10
 num_images = num_rows*num_cols
 plt.figure(figsize=(2*2*num_cols, 2*num_rows))
 for i in range(num_images):
