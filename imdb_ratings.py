@@ -14,10 +14,7 @@ print("Hub version: ", hub.__version__)
 print("GPU is", "available" if tf.config.experimental.list_physical_devices("GPU") else "NOT AVAILABLE")
 
 # Import data as 3 datasets, to train, validate, and test
-train_data, validation_data, test_data = tfds.load(
-	name="imdb_reviews", 
-	split=('train[:60%]', 'train[60%:]', 'test'),
-	as_supervised=True)
+train_data, validation_data, test_data = tfds.load(name="imdb_reviews", split=('train[:60%]', 'train[60%:]', 'test'), as_supervised=True)
 
 train_examples_batch, train_labels_batch = next(iter(train_data.batch(10)))
 
@@ -29,6 +26,7 @@ hub_layer(train_examples_batch[:3])
 # Build network model
 model = tf.keras.Sequential()
 model.add(hub_layer)
+model.add(tf.keras.layers.Dense(64))
 model.add(tf.keras.layers.Dense(16, activation='relu'))
 model.add(tf.keras.layers.Dense(1))
 
