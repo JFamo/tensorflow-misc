@@ -14,3 +14,10 @@ fashion_mnist = keras.datasets.fashion_mnist
 
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+               
+##Show first training image
+##plt.figure()
+##plt.imshow(train_images[0])
+##plt.colorbar()
+##plt.grid(False)
+##plt.show()
